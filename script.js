@@ -326,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const restartBtn = document.getElementById('restart-btn');
     const scoreCircle = document.getElementById('score-circle');
     const scoreText = document.getElementById('score-text');
-    const mobileScoreText = document.getElementById('mobile-score-text');
     const scoreDescription = document.getElementById('score-description');
     const statAnswered = document.getElementById('stat-answered');
     const statCorrect = document.getElementById('stat-correct');
@@ -499,7 +498,6 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = `${progressPercent}%`;
         
         scoreText.textContent = `${score}%`;
-        mobileScoreText.textContent = `${score}%`;
         let scoreColor = 'var(--success-color)';
         if (score < 75) scoreColor = 'var(--warning-color)';
         if (score < 50) scoreColor = 'var(--danger-color)';
