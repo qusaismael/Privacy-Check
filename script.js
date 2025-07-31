@@ -331,7 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const statCorrect = document.getElementById('stat-correct');
     const statIncorrect = document.getElementById('stat-incorrect');
     const langModal = document.getElementById('lang-modal');
-    const langSwitcher = document.getElementById('lang-switcher');
 
     // Language management
     const setLanguage = (lang) => {
@@ -346,8 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.textContent = translations[lang][key];
             }
         });
-        
-        langSwitcher.textContent = lang === 'en' ? translations.ar.language_switcher : translations.en.language_switcher;
 
         const oldAnswers = new Map(questions.map(q => [q.id, { answer: q.answer, note: q.note }]));
         questions = translations[lang].questions.map(q => ({
@@ -544,10 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    langSwitcher.addEventListener('click', () => {
-        const newLang = currentLang === 'en' ? 'ar' : 'en';
-        setLanguage(newLang);
-    });
+
 
     restartBtn.addEventListener('click', resetQuiz);
     
