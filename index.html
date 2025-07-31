@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Privacy Checkup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Language Selection Modal -->
+    <div class="lang-modal" id="lang-modal">
+        <div class="lang-modal-content">
+            <div class="lang-modal-header">
+                <h3>Select Your Language / اختر لغتك</h3>
+            </div>
+            <div class="lang-modal-body">
+                <button class="lang-select-btn" data-lang="en">English</button>
+                <button class="lang-select-btn" data-lang="ar">العربية (Arabic)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="disclaimer-header">
+            <div class="disclaimer-content">
+                <p><strong data-lang-key="disclaimer_title">Disclaimer:</strong> <span data-lang-key="disclaimer_text">This is an educational tool for privacy awareness. The scenarios presented are hypothetical and generalized. This tool does not provide legal advice, and its results are not an exhaustive analysis of any specific service's security or privacy practices.</span></p>
+            </div>
+        </div>
+        <header class="header">
+            <h1 data-lang-key="main_title">Digital Privacy Checkup</h1>
+            <p data-lang-key="main_subtitle">Answer a few questions about your online habits to see your privacy score and learn how to better protect your data in the digital world.</p>
+        </header>
+        <div class="controls">
+            <div class="controls-row">
+                <div class="control-group">
+                    <label for="checklist-select" data-lang-key="select_checklist_label">Select Checklist:</label>
+                    <select id="checklist-select">
+                        <option value="general" selected data-lang-key="checklist_general">General Online Habits</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                     <button class="lang-switcher" id="lang-switcher" data-lang-key="language_switcher">Switch Language</button>
+                     <button class="restart-btn" id="restart-btn" data-lang-key="restart_btn">🔄 Restart</button>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar-fill"></div>
+            </div>
+        </div>
+        <main class="main-content">
+            <section class="questionnaire-section">
+                <div id="questionnaire-container">
+                </div>
+            </section>
+            <aside class="score-sidebar">
+                <div class="score-panel">
+                    <h2 data-lang-key="score_title">Your Privacy Score</h2>
+                    <div class="score-display">
+                        <div id="score-circle">
+                            <span id="score-text">100%</span>
+                        </div>
+                    </div>
+                    <p class="score-description" id="score-description" data-lang-key="score_initial_desc">Answer the questions to see your score and get feedback.</p>
+                    <div class="score-stats">
+                        <div class="stat-item">
+                            <span class="stat-value val-answered" id="stat-answered">0/0</span>
+                            <span class="stat-label" data-lang-key="stat_answered">Answered</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value val-correct" id="stat-correct">0</span>
+                            <span class="stat-label" data-lang-key="stat_correct">Correct</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value val-incorrect" id="stat-incorrect">0</span>
+                            <span class="stat-label" data-lang-key="stat_incorrect">Incorrect</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <div class="mobile-score-float">
+        <button class="floating-score-btn" onclick="document.querySelector('.score-panel').scrollIntoView({ behavior: 'smooth' });">
+            <span class="floating-score-text" id="mobile-score-text">100%</span>
+        </button>
+    </div>
+    <button class="back-to-top" id="back-to-top-btn" title="Go to top">↑</button>
+    <script src="script.js"></script>
+</body>
+</html>
