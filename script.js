@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const answeredQuestions = questions.filter(q => q.answer !== null);
         const correctAnswers = answeredQuestions.filter(q => q.answer === q.bestPractice).length;
         const totalAnswered = answeredQuestions.length;
-        const score = totalAnswered === 0 ? 100 : Math.round((correctAnswers / totalAnswered) * 100);
+        const score = totalAnswered === 0 ? 0 : Math.round((correctAnswers / totalAnswered) * 100);
         
         const progressPercent = questions.length === 0 ? 0 : (totalAnswered / questions.length) * 100;
         progressBar.style.width = `${progressPercent}%`;
