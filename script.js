@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stat_correct: "Correct",
             stat_incorrect: "Incorrect",
             completion_title: "Checkup Complete!",
-            completion_text: "You've finished the assessment. Your final score is shown in the panel. You can now export your personalized report to review your answers and notes.",
+            completion_text: "You've finished the assessment. Your final score is shown in the panel.",
             yes_btn: "Yes",
             no_btn: "No",
             next_btn: "Next Question",
@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             notes_label: "My Notes (Why I answered this way, what to change, etc.)",
             notes_placeholder: "e.g., I should start using a password manager...",
             case_study_title: "Real-World Case",
+            footer_text: "This tool is open source, created by",
+            footer_author: "Qusai Ismail",
+            footer_repo: "View on GitHub",
             // Questions
             questions: [
                  {
@@ -177,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stat_correct: "صحيحة",
             stat_incorrect: "غير صحيحة",
             completion_title: "اكتمل الفحص!",
-            completion_text: "لقد أنهيت التقييم. نتيجتك النهائية معروضة في اللوحة. يمكنك الآن تصدير تقريرك المخصص لمراجعة إجاباتك وملاحظاتك.",
+            completion_text: "لقد أنهيت التقييم. نتيجتك النهائية معروضة في اللوحة.",
             yes_btn: "نعم",
             no_btn: "لا",
             next_btn: "السؤال التالي",
@@ -188,6 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
             notes_label: "ملاحظاتي (لماذا أجبت هكذا، ما الذي يجب تغييره، إلخ.)",
             notes_placeholder: "مثال: يجب أن أبدأ في استخدام مدير كلمات المرور...",
             case_study_title: "حالة من الواقع",
+            footer_text: "هذه الأداة مفتوحة المصدر، أنشأها",
+            footer_author: "قصي اسماعيل",
+            footer_repo: "عرض على GitHub",
             // Questions - Translated and Refined
             questions: [
                 {
