@@ -59,6 +59,7 @@ body {
 .lang-modal-content {
     background: var(--card-background);
     padding: 2.5rem;
+    max-width: calc(100vw - 2rem);
     border-radius: 20px;
     box-shadow: var(--shadow-large);
     text-align: center;
@@ -82,6 +83,7 @@ body {
     color: white;
     border: none;
     padding: 1rem 2.5rem;
+    min-height: 44px;
     border-radius: 12px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -92,6 +94,23 @@ body {
 .lang-select-btn:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: var(--shadow-large);
+}
+#language-switch {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--card-background);
+    color: var(--text-color);
+    cursor: pointer;
+}
+#language-switch:focus-visible, .lang-select-btn:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+@media (max-width: 480px) {
+    .lang-modal-content { padding: 1.25rem; }
+    .lang-modal-body { flex-direction: column; gap: 0.75rem; }
 }
 .container {
     max-width: 1200px;
