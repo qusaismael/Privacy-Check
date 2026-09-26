@@ -337,9 +337,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const statCorrect = document.getElementById('stat-correct');
     const statIncorrect = document.getElementById('stat-incorrect');
     const langModal = document.getElementById('lang-modal');
+    let nextTimer = null;
+    let revealTimer = null;
 
     // Language management
     const setLanguage = (lang) => {
+        clearTimeout(nextTimer);
+        clearTimeout(revealTimer);
+        nextTimer = null;
+        revealTimer = null;
         currentLang = lang;
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -366,12 +372,43 @@ document.addEventListener('DOMContentLoaded', () => {
         updateScore();
     };
     
+    const languageSwitch = document.getElementById('language-switch');
+    const languageButtons = Array.from(langModal.querySelectorAll('.lang-select-btn'));
+    let previousFocus = null;
+    const openLanguageDialog = () => {
+        previousFocus = document.activeElement;
+        langModal.classList.add('show');
+        document.querySelector('.container').inert = true;
+        languageButtons[0].focus();
+    };
+    const closeLanguageDialog = () => {
+        langModal.classList.remove('show');
+        document.querySelector('.container').inert = false;
+        (previousFocus?.isConnected && previousFocus !== document.body ? previousFocus : languageSwitch).focus();
+    };
+    languageSwitch.addEventListener('click', openLanguageDialog);
+    langModal.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && localStorage.getItem('privacyCheckupLang')) {
+            event.preventDefault();
+            closeLanguageDialog();
+        }
+        if (event.key !== 'Tab') return;
+        const first = languageButtons[0], last = languageButtons.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    });
+
     const initLanguage = () => {
         const savedLang = localStorage.getItem('privacyCheckupLang');
         if (savedLang) {
             setLanguage(savedLang);
         } else {
-            langModal.classList.add('show');
+            openLanguageDialog();
         }
     };
     
@@ -432,7 +469,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(currentCard) {
                     currentCard.classList.add('exiting');
                 }
-                setTimeout(() => {
+                nextTimer = setTimeout(() => {
+                    nextTimer = null;
                     currentQuestionIndex++;
                     if (currentQuestionIndex < questions.length) {
                         renderQuestion(currentQuestionIndex);
@@ -484,7 +522,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateScore();
         
-        setTimeout(() => {
+        revealTimer = setTimeout(() => {
+            revealTimer = null;
             nextContainer.style.display = 'block';
             nextContainer.classList.add('show');
         }, 1500);
@@ -500,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const progressPercent = questions.length === 0 ? 0 : (totalAnswered / questions.length) * 100;
         progressBar.style.width = `${progressPercent}%`;
         
-        scoreText.textContent = `${score}%`;
+        scoreText.textContent = totalAnswered === 0 ? '—' : `${score}%`;
         let scoreColor = 'var(--success-color)';
         if (score < 75) scoreColor = 'var(--warning-color)';
         if (score < 50) scoreColor = 'var(--danger-color)';
@@ -526,6 +565,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const resetQuiz = () => {
+        clearTimeout(nextTimer);
+        clearTimeout(revealTimer);
+        nextTimer = null;
+        revealTimer = null;
         // Reset all questions and start over
         currentQuestionIndex = 0;
         questions.forEach(q => {
@@ -543,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.lang-select-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             setLanguage(btn.dataset.lang);
-            langModal.classList.remove('show');
+            closeLanguageDialog();
         });
     });
 

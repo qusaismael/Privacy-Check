@@ -9,10 +9,10 @@
 <body>
 
     <!-- Language Selection Modal -->
-    <div class="lang-modal" id="lang-modal">
+    <div class="lang-modal" id="lang-modal" role="dialog" aria-modal="true" aria-labelledby="lang-dialog-title">
         <div class="lang-modal-content">
             <div class="lang-modal-header">
-                <h3>Select Your Language / اختر لغتك</h3>
+                <h3 id="lang-dialog-title">Select Your Language / اختر لغتك</h3>
             </div>
             <div class="lang-modal-body">
                 <button class="lang-select-btn" data-lang="en">English</button>
@@ -41,6 +41,7 @@
                 </div>
                 <div class="control-group">
                      <button class="restart-btn" id="restart-btn" data-lang-key="restart_btn">🔄 Restart</button>
+                     <button type="button" id="language-switch" aria-label="Change language">English / العربية</button>
                 </div>
             </div>
             <div class="progress-bar-container">
@@ -57,7 +58,7 @@
                     <h2 data-lang-key="score_title">Your Privacy Score</h2>
                     <div class="score-display">
                         <div id="score-circle">
-                            <span id="score-text">100%</span>
+                            <span id="score-text" role="status" aria-live="polite" aria-atomic="true">—</span>
                         </div>
                     </div>
                     <p class="score-description" id="score-description" data-lang-key="score_initial_desc">Answer the questions to see your score and get feedback.</p>
